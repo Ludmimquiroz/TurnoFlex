@@ -1,0 +1,19 @@
+//- Botón flotante para abrir el chat
+button#chatToggle.chat-toggle-btn
+  i.fas.fa-robot
+  span ¿En qué puedo ayudarte?
+
+//- Contenedor del chat (inicialmente oculto)
+#chat-widget.hidden
+  .chat-header
+    h4 #[i.fas.fa-robot] Asistencia CIKIRE
+    button#closeChat(type="button") &times;
+  
+  #chatHistorial
+  
+  form#chatForm
+    input#chatInput(type="text" placeholder="Escribí tu consulta..." autocomplete="off")
+    button(type="submit") #[i.fas.fa-paper-plane]
+
+script(src="/socket.io/socket.io.js")
+script(src="/js/asistencia.js")

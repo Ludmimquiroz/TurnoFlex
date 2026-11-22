@@ -1,0 +1,23 @@
+extends layout.pug
+
+block content
+  .login-container(style="max-width: 400px; margin: 5rem auto; padding: 2rem; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);")
+    h2(style="text-align: center; color: var(--dark-blue); margin-bottom: 1.5rem;") Iniciar sesión
+    
+    //- Si tenés lógica de errores desde el backend, la dejamos
+    if error
+      p.alert-error(style="color: red; text-align: center;") Credenciales inválidas o usuario inactivo.
+
+    form(action="/login", method="POST")
+      .form-group(style="margin-bottom: 1rem;")
+        label(for="usuario" style="display: block; margin-bottom: 0.5rem;") Usuario:
+        input#usuario(type="text", name="usuario", required=true, style="width: 100%; padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc;")
+      
+      .form-group(style="margin-bottom: 1.5rem;")
+        label(for="password" style="display: block; margin-bottom: 0.5rem;") Contraseña:
+        input#password(type="password", name="password", required=true, style="width: 100%; padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc;")
+      
+      button.btn.btn-primary(type="submit" style="width: 100%; justify-content: center;") Ingresar
+    
+    p(style="text-align: center; margin-top: 1rem;") ¿No tenés usuario? 
+      a(href="/login/registro" style="color: var(--cyan);") Registrate

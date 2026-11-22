@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  .admin-page(data-rol=usuarioLogueado.rol)
+    .admin-header
+      h2 Gestión de Pacientes
+      p Administración de fichas médicas y datos de contacto de los pacientes de CIKIRE.
+
+    if usuarioLogueado && ['administrativo', 'recepcionista', 'coordinador'].includes(usuarioLogueado.rol)
+      .admin-card
+        h3 Agregar Paciente
+        form#formPaciente.admin-form-grid
+          .form-group
+            label(for="nombre") Nombre
+            input#nombre.form-control(type="text", name="nombre", placeholder="Ingresá el nombre", required=true)
+
+          .form-group
+            label(for="apellido") Apellido
+            input#apellido.form-control(type="text", name="apellido", placeholder="Ingresá el apellido", required=true)
+
+          .form-group
+            label(for="dni") DNI
+            input#dni.form-control(type="text", name="dni", placeholder="Ej: 30123456 (sin puntos)", required=true)
+
+          .form-group
+            label(for="telefono") Teléfono
+            input#telefono.form-control(type="text", name="telefono", placeholder="Ej: 11 5555-1234")
+
+          .form-group
+            label(for="email") Email
+            input#email.form-control(type="email", name="email", placeholder="Ej: paciente@correo.com")
+
+          .form-actions
+            button.btn.btn-primary(type="submit") Guardar Paciente
+
+    .admin-card
+      h3 Padrón de Pacientes
+      p.vacio#sinPacientes No hay pacientes registrados todavía.
+
+      .table-responsive
+        table.listado#tablaPacientes
+          thead
+            tr
+              th Nombre
+              th Apellido
+              th DNI
+              th Teléfono
+              th Email
+              th Acciones
+          tbody#cuerpoTablaPacientes
+
+  script(src="/js/pacientes.js")
